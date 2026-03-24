@@ -20,8 +20,10 @@
 ## 运行
 
 ```bash
-python elective_scout.py
+python elective_scout.py --uwflow
 ```
+
+这是推荐的默认运行方式。加上 `--uwflow` 后，终端里列出的每门课都会单独占一行，并附带 UW Flow 的 `easy` 和 `useful` 评分。
 
 脚本会依次问你：
 
@@ -33,7 +35,23 @@ python elective_scout.py
 
 当前学期的必修课从 Waterloo catalog 自动推算，**无需手动输入**。
 
-**默认输出** — 直接在终端打印可选课的课程号：
+**推荐默认输出（带 `--uwflow`）**：
+
+```
+Eligible electives — spring2026
+
+online (3):
+  ANTH101 | easy 71% | useful 58%
+  CS449 | easy 43% | useful 78%
+  PSYCH100 | easy 74% | useful 49%
+
+no conflict (9):
+  ECE302 | easy 36% | useful 73%
+  ECE405 | easy 41% | useful 69%
+  ECE414 | easy 48% | useful 76%
+```
+
+如果你**不想看** UW Flow 评分，就把 `--uwflow` 去掉。这样默认输出会保持紧凑，只打印课程号：
 
 ```
 Eligible electives — spring2026
@@ -99,6 +117,7 @@ MATH239, ECE250 LEC 001, ECE316:LEC 001
 | `--output-prefix` | 文件前缀（默认：从专业名派生）|
 | `--report` | 将分类和课表文件写入磁盘 |
 | `--verbose` | 在终端输出中显示课程名 |
+| `--uwflow` | 在终端列出的每门课后显示 UW Flow 的 `easy` 和 `useful` 评分 |
 | `--student-major-name` | 专业全名 |
 | `--student-standing` | 学期（如 `3A`）|
 | `--student-completed-course`（可多次）| 已完成选修课 |

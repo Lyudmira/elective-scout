@@ -20,8 +20,10 @@ It is built specifically for Waterloo catalog data, Waterloo class schedules, an
 ## Usage
 
 ```bash
-python elective_scout.py
+python elective_scout.py --uwflow
 ```
+
+This is the recommended default way to run the tool. With `--uwflow`, the terminal output shows each listed course on its own line together with UW Flow's `easy` and `useful` scores.
 
 The script will ask you:
 
@@ -33,7 +35,23 @@ The script will ask you:
 
 Required courses for your current standing are **auto-detected** from the Waterloo program catalog — you don't need to enter them manually.
 
-**Default output** — prints eligible course codes directly to the terminal:
+**Recommended default output with `--uwflow`**:
+
+```
+Eligible electives — spring2026
+
+online (3):
+  ANTH101 | easy 71% | useful 58%
+  CS449 | easy 43% | useful 78%
+  PSYCH100 | easy 74% | useful 49%
+
+no conflict (9):
+  ECE302 | easy 36% | useful 73%
+  ECE405 | easy 41% | useful 69%
+  ECE414 | easy 48% | useful 76%
+```
+
+If you do **not** want UW Flow scores, remove `--uwflow`. Then the output stays compact and only prints course codes by default:
 
 ```
 Eligible electives — spring2026
@@ -99,6 +117,7 @@ All prompts can be bypassed with flags:
 | `--output-prefix` | filename prefix (default: derived from program name) |
 | `--report` | write classification and schedule files to disk |
 | `--verbose` | show course titles in terminal output |
+| `--uwflow` | print UW Flow `easy` and `useful` scores next to each terminal-listed course |
 | `--student-major-name` | student's program name |
 | `--student-standing` | academic standing e.g. `3A` |
 | `--student-completed-course` (repeatable) | past completed elective |
