@@ -1,15 +1,19 @@
-# elective-scout
+# uw-elective-scout
 
-You open Quest to add an elective and hit a wall:
+Elective filtering for University of Waterloo undergraduate programs.
+
+You open Waterloo Quest to add an elective and hit a wall:
 
 - Prerequisite not met — rejected.
-- Swap to another one, time conflict with your existing courses — rejected.
+- Swap to another one, time conflict with your existing Waterloo courses — rejected.
 - Try a third, it's at the Cambridge or St. Jerome's campus — not worth the commute.
 - Try a fourth, it's fully online, not what you wanted.
 
-Each attempt means checking the calendar for prereqs, then manually hunting through class sections on classes.uwaterloo.ca, then cross-referencing your timetable. For a long elective list this can take an entire afternoon.
+Each attempt means checking the University of Waterloo undergraduate calendar for prereqs, then manually hunting through class sections on classes.uwaterloo.ca, then cross-referencing your timetable. For a long elective list this can take an entire afternoon.
 
 This tool does all three things in one shot: **which electives you already meet the prereqs for, where they're offered this term, and which ones don't conflict with your registered courses**. You get a filtered list you can act on directly.
+
+It is built specifically for Waterloo catalog data, Waterloo class schedules, and Waterloo program structures.
 
 ---
 
@@ -27,7 +31,7 @@ The script will ask you:
 4. **Any extra courses registered this term beyond your required ones** (Enter to skip)
 5. **Schedule term** (e.g. `W26`, `S26`, `F26`; Enter for the current term)
 
-Required courses for your current standing are **auto-detected** from the program catalog — you don't need to enter them manually.
+Required courses for your current standing are **auto-detected** from the Waterloo program catalog — you don't need to enter them manually.
 
 **Default output** — prints eligible course codes directly to the terminal:
 
@@ -49,7 +53,7 @@ Add `--verbose` to also show course titles. Add `--report` to write the full cla
 
 **Step 1 — Prereq classification**
 
-Pulls your program's elective list from the Kuali catalog and walks the prerequisite tree for every course to determine the earliest term you can take it: `2B / 3A / 3B / impossible`.
+Pulls your program's elective list from the University of Waterloo Kuali catalog and walks the prerequisite tree for every course to determine the earliest term you can take it: `2B / 3A / 3B / impossible`.
 
 The `impossible` judgment is personalized. Courses whose prereqs are satisfied by your standing are classified correctly — required courses from earlier terms are automatically marked as completed. Past electives you provide are used to resolve cases where one elective is a prereq for another.
 

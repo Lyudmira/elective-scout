@@ -1,15 +1,19 @@
-# elective-scout
+# uw-elective-scout
 
-你去 Quest 想加一门选修，结果发现：
+面向 University of Waterloo 本科项目的选修课筛选工具。
+
+你去 Waterloo Quest 想加一门选修，结果发现：
 
 - 先修条件不满足，rejected。
 - 换一门，时间和已有课冲突，rejected。
 - 再换一门，发现是 Cambridge 或 St. Jerome's 校区，不想跑那么远，rejected。
 - 又换一门，全在线上，不符合你的需求，rejected。
 
-每次都要先查 catalog 看能不能选，再去 classes.uwaterloo.ca 一条条翻 section 的时间，再手动对比你的课表。课程多的时候，这个过程可以耗掉一个下午。
+每次都要先查 University of Waterloo catalog 看能不能选，再去 classes.uwaterloo.ca 一条条翻 section 的时间，再手动对比你的课表。课程多的时候，这个过程可以耗掉一个下午。
 
 这个工具把这三件事一次性自动完成：**哪些课的先修条件你已经满足了、这学期在哪开课、和你已注册的课有没有时间冲突**。跑完之后你拿到的是一张过滤好的清单，而不是一个要自己从头筛的课程表。
+
+它专门针对 Waterloo 的专业目录、课程先修规则和课表数据而写，不是一个通用的选课脚本。
 
 ---
 
@@ -27,7 +31,7 @@ python elective_scout.py
 4. **本学期额外注册的课程**（必修课以外；若没有直接回车）
 5. **课表学期**（如 `W26`、`S26`、`F26`；回车使用当前学期）
 
-当前学期的必修课从 catalog 自动推算，**无需手动输入**。
+当前学期的必修课从 Waterloo catalog 自动推算，**无需手动输入**。
 
 **默认输出** — 直接在终端打印可选课的课程号：
 
@@ -49,7 +53,7 @@ no conflict (9):
 
 **第一步：先修条件分类**
 
-从 Kuali catalog 拉下来你专业的所有选修课，对每一门走一遍先修条件树，判断最早哪个学期你能选。结果分成 `2B / 3A / 3B / impossible`。
+从 University of Waterloo 的 Kuali catalog 拉下来你专业的所有选修课，对每一门走一遍先修条件树，判断最早哪个学期你能选。结果分成 `2B / 3A / 3B / impossible`。
 
 "impossible" 的判断是个人化的：你当前 standing 之前的所有学期必修课都自动算作已完成；你提供的此前选修课用于处理以选修为先修的情况。
 
