@@ -30,7 +30,7 @@ TERM_ORDER = {"1A": 1, "1B": 2, "2A": 3, "2B": 4, "3A": 5, "3B": 6, "4A": 7, "4B
 HTTP_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 }
-DEBUG_REQUESTS = True
+DEBUG_REQUESTS = False
 
 
 def _debug_print(message: str) -> None:
@@ -1077,6 +1077,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--report", action="store_true", help="Write classification and schedule files to disk")
     parser.add_argument("--verbose", action="store_true", help="Show course names in terminal output (default: codes only)")
     parser.add_argument("--uwflow", action="store_true", help="Show UW Flow easy/useful scores next to each terminal-listed course")
+    parser.add_argument("--debug", action="store_true", help="Print detailed request/debug logs")
     # Schedule
     parser.add_argument("--schedule-term", help="Waterloo schedule term number or named alias")
     parser.add_argument("--allowed-marker", action="append", dest="allowed_markers", help="Additional prerequisite enrollment marker to treat as satisfied")
@@ -1215,6 +1216,8 @@ def prompt_required_course_sections(course_codes: tuple[str, ...], term: str) ->
 
 def main() -> None:
     args = build_parser().parse_args()
+    global DEBUG_REQUESTS
+    DEBUG_REQUESTS = bool(args.debug)
     interactive = not args.non_interactive
 
     # --- STEP 1: Resolve program identity ---
